@@ -1,3 +1,46 @@
 <%-include("partials/head.ejs")-%>
 
+<section id="writeup">
+    <div class="row">
+        <div class="col-1 element">
+            <!-- this place is empty  -->
+        </div>
+        <div>
+            <div class="experiment">
+                <div class="col-md-8 card text-left">
+                    <% posts.forEach(function(post){ %>
+                        <div class="card-body">
+                            <div class="contents row no-gutters bg-light position-relative">
+                                <div class="col-md-8 position-static p-4 pl-md-0">
+                                <h5 class="mt-0"><%=post.title%></h5>
+                                <p>
+                                  <%=post.body.substring(0,150)%>
+                                  <a href="/<%=post._id%>">  ...Read more</a>
+                                </p>
+                                <!-- <a href="#" class="stretched-link">Go somewhere</a> -->
+                                </div>
+                                <div class="col-md-4 mb-md-0  mb-md-0 p-md-2 unsplash">
+                                  <img src="https://images.unsplash.com/photo-1628768709954-b141dde9d650?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80" class="w-100" alt="...">
+                              </div>
+                          </div>
+                          <div class="card-header">
+                              <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#">Comment</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#">Share</a>
+                                </li>
+                              </ul>
+                            </div>
+                        </div>
+                    <%})%>                  
+            </div>    
+        </div>
+        <div class="col-3 element">
+          <!-- this place is empty -->
+        </div>
+      </div> 
+</section>
+
 <%-include("partials/foot.ejs")-%>
