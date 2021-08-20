@@ -1,6 +1,7 @@
 const express = require("express");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const _ = require("lodash");
 
 const session = require("express-session");
 const passport = require("passport");
@@ -53,7 +54,7 @@ app.route("/")
             posts: found,
         })
     })
-})
+});
 
 app.route("/compose")
 .get(function(req,res){
@@ -72,7 +73,7 @@ app.route("/compose")
     })
     toxic.save()
     res.redirect("/")
-})
+});
 
 app.route("/community")
 .get(function(req,res){
@@ -81,7 +82,7 @@ app.route("/community")
     }else{
         res.redirect("/login")
     }
-})
+});
 
 app.route("/login")
 .get(function(req,res){
@@ -100,7 +101,7 @@ app.route("/login")
             })
         }
     })
-})
+});
 
 app.route("/signup")
 .get(function(req,res){
@@ -117,12 +118,29 @@ app.route("/signup")
             })
         }
     })
-})
+});
 
 app.route("/logout")
 .get(function(req,res){
     req.logOut();
     res.redirect("/");
+});
+
+
+app.route("/toxic/:id")
+.get(function(req,res){
+    const route = req.params.id;
+
+    Toxic.findOne({_id: route}, function(err, foundPost){
+        if(!err){
+            res.render("blog",{
+                heading: foundPost.title,
+                content: foundPost.body,
+            })
+        }else{
+            console.log("what the fuck!!")
+        }
+    })
 })
 
 //listen
